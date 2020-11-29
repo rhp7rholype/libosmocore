@@ -378,8 +378,11 @@ struct gprs_ns2_vc *gprs_ns2_ip_bind_connect(struct gprs_ns2_vc_bind *bind,
 {
 	struct gprs_ns2_vc *nsvc;
 	struct priv_vc *priv;
+	char idbuf[64];
 
-	nsvc = ns2_vc_alloc(bind, nse, true);
+	snprintf(idbuf, sizeof(idbuf), "%s-NSEI%u-remote-%s", gprs_ns2_lltype_str(nse->ll),
+		 nse->nsei, "FIXME" /*osmo_sockaddr_to_str(remote)*/);
+	nsvc = ns2_vc_alloc(bind, nse, true, idbuf);
 	if (!nsvc)
 		return NULL;
 

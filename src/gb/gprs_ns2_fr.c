@@ -590,9 +590,12 @@ struct gprs_ns2_vc *gprs_ns2_fr_connect(struct gprs_ns2_vc_bind *bind,
 					uint16_t nsvci,
 					uint16_t dlci)
 {
+	char idbuf[64];
 	bool created_nse = false;
 	struct gprs_ns2_vc *nsvc = NULL;
 	struct priv_vc *priv = NULL;
+	struct priv_bind *bpriv = bind->priv;
+
 	struct gprs_ns2_nse *nse = gprs_ns2_nse_by_nsei(bind->nsi, nsei);
 	if (!nse) {
 		nse = gprs_ns2_create_nse(bind->nsi, nsei, GPRS_NS2_LL_FR);
@@ -606,7 +609,9 @@ struct gprs_ns2_vc *gprs_ns2_fr_connect(struct gprs_ns2_vc_bind *bind,
 		goto err_nse;
 	}
 
-	nsvc = ns2_vc_alloc(bind, nse, true);
+	snprintf(idbuf, sizeof(idbuf), "%s-%s-DLCI%u-NSEI%u-NSVCI%u", gprs_ns2_lltype_str(nse->ll),
+		 bpriv->netif, dlci, nse->nsei, nsvci);
+	nsvc = ns2_vc_alloc(bind, nse, true, idbuf);
 	if (!nsvc)
 		goto err_nse;
 
