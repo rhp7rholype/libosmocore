@@ -180,22 +180,9 @@ gb_gprs_ns_test_LDADD = $(LDADD) $(top_builddir)/src/gb/libosmogb.la $(LIBRARY_D
 			$(top_builddir)/src/vty/libosmovty.la \
 			$(top_builddir)/src/gsm/libosmogsm.la
 
-gb_gprs_ns2_test_SOURCES = gb/gprs_ns2_test.c \
-			$(top_srcdir)/src/gb/gprs_ns2.c \
-			$(top_srcdir)/src/gb/gprs_ns2_udp.c \
-			$(top_srcdir)/src/gb/gprs_ns2_frgre.c \
-			$(top_srcdir)/src/gb/gprs_ns2_fr.c \
-			$(top_srcdir)/src/gb/gprs_ns2_vc_fsm.c \
-			$(top_srcdir)/src/gb/gprs_ns2_sns.c \
-			$(top_srcdir)/src/gb/gprs_ns2_message.c \
-			$(top_srcdir)/src/gb/gprs_ns2_vty.c \
-			$(top_srcdir)/src/gb/gprs_ns.c \
-			$(top_srcdir)/src/gb/gprs_ns_frgre.c \
-			$(top_srcdir)/src/gb/gprs_ns_vty.c \
-			$(top_srcdir)/src/gb/gprs_ns_sns.c \
-			$(top_srcdir)/src/gb/frame_relay.c \
-			$(top_srcdir)/src/gb/common_vty.c
+gb_gprs_ns2_test_SOURCES = gb/gprs_ns2_test.c
 gb_gprs_ns2_test_LDADD = $(LDADD) $(LIBRARY_DLSYM) \
+			$(top_builddir)/src/gb/libosmogb-test.la \
 			$(top_builddir)/src/vty/libosmovty.la \
 			$(top_builddir)/src/gsm/libosmogsm.la \
 			$(top_builddir)/src/libosmocore.la
