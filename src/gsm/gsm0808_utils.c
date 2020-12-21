@@ -1613,6 +1613,11 @@ static void cell_id_to_cgi(struct osmo_cell_global_id *dst,
 		*dst = u->global;
 		return;
 
+	case CELL_IDENT_WHOLE_GLOBAL_PS:
+		dst->lai = u->global_ps.rai.lac;
+		dst->cell_identity = u->global_ps.cell_identity;
+		return;
+
 	case CELL_IDENT_LAC_AND_CI:
 		dst->lai.lac = u->lac_and_ci.lac;
 		dst->cell_identity = u->lac_and_ci.ci;
