@@ -74,7 +74,7 @@ check_PROGRAMS += \
 endif
 
 if ENABLE_GB
-check_PROGRAMS += gb/bssgp_fc_test gb/gprs_bssgp_test gb/gprs_ns_test fr/fr_test
+check_PROGRAMS += gb/bssgp_fc_test gb/gprs_bssgp_test gb/gprs_bssgp_rim_test gb/gprs_ns_test fr/fr_test
 endif
 
 utils_utils_test_SOURCES = utils/utils_test.c
@@ -174,6 +174,10 @@ gb_gprs_bssgp_test_LDADD = $(LDADD) $(top_builddir)/src/gb/libosmogb.la $(LIBRAR
 			   $(top_builddir)/src/vty/libosmovty.la \
 			   $(top_builddir)/src/gsm/libosmogsm.la \
 			   $(top_builddir)/src/gb/libosmogb.la
+
+gb_gprs_bssgp_rim_test_SOURCES = gb/gprs_bssgp_rim_test.c
+gb_gprs_bssgp_rim_test_LDADD = $(LDADD) $(top_builddir)/src/gb/libosmogb.la $(LIBRARY_DLSYM) \
+			       $(top_builddir)/src/gb/libosmogb.la
 
 gb_gprs_ns_test_SOURCES = gb/gprs_ns_test.c
 gb_gprs_ns_test_LDADD = $(LDADD) $(top_builddir)/src/gb/libosmogb.la $(LIBRARY_DLSYM) \
